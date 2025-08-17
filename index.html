@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Unimatch AI — SNBP Prediction & Chatbot Konsultasi</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="logo">U</div>
+        <div>
+          <h1>Unimatch AI</h1>
+          <p class="subtitle">SNBP Prediction & Konsultasi Pendidikan</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="themeToggle" class="toggle" aria-label="Toggle theme">
+          <span class="sun">☀</span><span class="moon">🌙</span>
+        </button>
+        <button id="toggleView" class="btn">Konsultasi Chatbot</button>
+        <span class="badge">v0.2</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main-grid">
+    <!-- PREDICTION VIEW -->
+    <div id="predictionView" class="view-container">
+      <!-- FORM -->
+      <section class="card">
+        <h2 class="card-title">Input</h2>
+        <p class="muted mt-4">Fill the fields below, then click <strong>Predict</strong>.</p>
+
+        <div class="grid mt-16">
+          <label>Program
+            <select id="program" class="input">
+              <option value="saintek">Saintek</option>
+              <option value="soshum">Soshum</option>
+            </select>
+          </label>
+          
+          <label>Competitiveness
+            <select id="competitiveness" class="input">
+              <option value="very">Very competitive</option>
+              <option value="high" selected>High</option>
+              <option value="mid">Medium</option>
+              <option value="low">Lower</option>
+            </select>
+          </label>
+
+          <label>Rank Percentile
+            <input id="rank_percentile" type="number" min="1" max="100" value="100" class="input" />
+          </label>
+
+          <label>Achievement
+            <select id="achievement" class="input">
+              <option value="none">None</option>
+              <option value="school">School/City</option>
+              <option value="prov">Province</option>
+              <option value="national">National/International</option>
+            </select>
+          </label>
+
+          <label>School Accreditation
+            <select id="accreditation" class="input">
+              <option value="A">A</option>
+              <option value="B" selected>B</option>
+              <option value="C">C</option>
+            </select>
+          </label>
+        </div>
+
+        <h3 class="section-heading">University & Major Preferences</h3>
+        
+        <!-- Choice 1 -->
+        <div class="choice-section">
+          <h4 class="choice-title">Choice 1 (Priority)</h4>
+          <div class="choice-grid">
+            <label>University
+              <div class="single-select" id="choice1UniversityBox">
+                <div class="selected-major" id="choice1UniversitySelected"></div>
+                <input id="choice1UniversityInput" class="input" placeholder="Type to search university" autocomplete="off" />
+                <div class="dropdown" id="choice1UniversityDropdown" hidden></div>
+              </div>
+            </label>
+            
+            <label>Major
+              <div class="single-select disabled" id="choice1MajorBox">
+                <div class="selected-major" id="choice1MajorSelected"></div>
+                <input id="choice1MajorInput" class="input" placeholder="Select university first" autocomplete="off" disabled />
+                <div class="dropdown" id="choice1MajorDropdown" hidden></div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Choice 2 -->
+        <div class="choice-section">
+          <h4 class="choice-title">Choice 2 (Alternative)</h4>
+          <div class="choice-grid">
+            <label>University
+              <div class="single-select" id="choice2UniversityBox">
+                <div class="selected-major" id="choice2UniversitySelected"></div>
+                <input id="choice2UniversityInput" class="input" placeholder="Type to search university" autocomplete="off" />
+                <div class="dropdown" id="choice2UniversityDropdown" hidden></div>
+              </div>
+            </label>
+            
+            <label>Major
+              <div class="single-select disabled" id="choice2MajorBox">
+                <div class="selected-major" id="choice2MajorSelected"></div>
+                <input id="choice2MajorInput" class="input" placeholder="Select university first" autocomplete="off" disabled />
+                <div class="dropdown" id="choice2MajorDropdown" hidden></div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Choice 3 -->
+        <div class="choice-section">
+          <h4 class="choice-title">Choice 3 (Backup)</h4>
+          <div class="choice-grid">
+            <label>University
+              <div class="single-select" id="choice3UniversityBox">
+                <div class="selected-major" id="choice3UniversitySelected"></div>
+                <input id="choice3UniversityInput" class="input" placeholder="Type to search university" autocomplete="off" />
+                <div class="dropdown" id="choice3UniversityDropdown" hidden></div>
+              </div>
+            </label>
+            
+            <label>Major
+              <div class="single-select disabled" id="choice3MajorBox">
+                <div class="selected-major" id="choice3MajorSelected"></div>
+                <input id="choice3MajorInput" class="input" placeholder="Select university first" autocomplete="off" disabled />
+                <div class="dropdown" id="choice3MajorDropdown" hidden></div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <h3 class="section-heading">Report Card (S1—S5)</h3>
+        <div class="grid">
+          <input id="s1" class="input" type="number" placeholder="S1 (0-100)" />
+          <input id="s2" class="input" type="number" placeholder="S2 (0-100)" />
+          <input id="s3" class="input" type="number" placeholder="S3 (0-100)" />
+          <input id="s4" class="input" type="number" placeholder="S4 (0-100)" />
+          <input id="s5" class="input" type="number" placeholder="S5 (0-100)" />
+        </div>
+
+        <h3 class="section-heading">Core Subjects (leave blank if N/A)</h3>
+        <div class="grid">
+          <input id="math" class="input" type="number" placeholder="Math (0-100)" />
+          <input id="language" class="input" type="number" placeholder="Indo+Eng avg (0-100)" />
+          <input id="physics" class="input" type="number" placeholder="Physics (saintek)" />
+          <input id="chemistry" class="input" type="number" placeholder="Chemistry (saintek)" />
+          <input id="biology" class="input" type="number" placeholder="Biology (saintek)" />
+          <input id="economics" class="input" type="number" placeholder="Economics (soshum)" />
+          <input id="geography" class="input" type="number" placeholder="Geography (soshum)" />
+          <input id="history" class="input" type="number" placeholder="History (soshum)" />
+        </div>
+
+        <div class="actions">
+          <button id="predictBtn" class="btn primary"><span class="btn-dot"></span> Predict</button>
+          <button id="resetBtn" class="btn">Reset</button>
+        </div>
+      </section>
+
+      <!-- RESULT -->
+      <section class="card">
+        <h2 class="card-title">Result</h2>
+        <div id="result" class="muted">Fill the form and click Predict.</div>
+      </section>
+
+      <!-- NOTES -->
+      <section class="card">
+        <h2 class="card-title">Notes</h2>
+        <ul class="list">
+          <li>This is a <strong>demo scaffold</strong>. Replace the dummy model with a real ML pipeline later.</li>
+          <li>Probabilities are illustrative; not official SNBP outcomes.</li>
+          <li><strong>University & Major Priorities:</strong> Choose your top 3 university-major combinations in order.</li>
+          <li><strong>Major Selection:</strong> You must select a university first before choosing a major for each choice.</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- CHATBOT VIEW -->
+    <div id="chatbotView" class="view-container" style="display: none;">
+      <section class="card chatbot-card">
+        <h2 class="card-title">🤖 Konsultasi Pendidikan</h2>
+        <p class="muted mt-4">Tanyakan tentang rekomendasi jurusan, strategi belajar, atau konsultasi nilai!</p>
+        
+        <div id="chatContainer" class="chat-container">
+          <div id="chatMessages" class="chat-messages">
+            <div class="message bot-message">
+              <div class="message-content">
+                <strong>👋 Halo! Saya asisten konsultasi pendidikan Unimatch AI</strong><br><br>
+                Saya bisa membantu Anda dengan:<br>
+                📊 <strong>Rekomendasi Jurusan</strong> berdasarkan nilai rapor<br>
+                📚 <strong>Rencana Belajar</strong> untuk jurusan target<br>
+                💡 <strong>Tips Belajar</strong> untuk persiapan UTBK<br>
+                🏫 <strong>Informasi Jurusan</strong> dan passing grade<br><br>
+                Silakan tanyakan apa yang ingin Anda ketahui! 😊
+              </div>
+            </div>
+          </div>
+          
+          <div class="chat-input-container">
+            <div class="chat-input-wrapper">
+              <textarea 
+                id="chatInput" 
+                class="chat-input input" 
+                placeholder="Ketik pesan Anda di sini..." 
+                maxlength="500"
+                rows="1"
+              ></textarea>
+              <button id="sendBtn" class="btn primary send-btn">
+                <span class="send-icon">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>© 2025 Unimatch AI — Demo with Education Chatbot</span>
+      <span class="muted">Built with Flask & Vanilla JS</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
