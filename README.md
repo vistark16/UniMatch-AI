@@ -1,7 +1,9 @@
 # UniMatch AI
 
 🚧 *Note:* We are still working on deploying this project to platforms such as Vercel and Railway.  
-In the meantime, you can run everything locally.
+In the meantime, you can run everything locally.  
+
+👉 For a preview of the website UI, visit: [https://uni-match-ai.vercel.app/](https://uni-match-ai.vercel.app/)
 
 ---
 
@@ -12,9 +14,10 @@ The backend handles requests (e.g., prediction, health check), and the frontend 
 ---
 
 ## How to Run Locally
-1. run app.py in backend folder
-2. run index.html frontend folder
-### noted
+1. Run `app.py` inside the **backend** folder.
+2. Open `index.html` inside the **frontend** folder.
+
+### Notes
 1. Make sure you have *Python 3.9+* installed.
 2. Install dependencies:
    ```bash
